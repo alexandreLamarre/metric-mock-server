@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind : Deployment
+metadata :
+  name : instrumentation-deployment
+  labels :
+    app : instrumentation
+  spec:
+    replicas: 3
+    selector : 
+      matchLabels:
+        app : instrumentation
+    template:
+      metadata:
+        labels:
+          app: nginx
+      spec:
+        containers:
+          - name : instrumentation
+            image : alex7285/instrumentation:latest
+            ports:
+            containerPort : 8080
